@@ -1,0 +1,201 @@
+/* ===== Header 精简样式 ===== */
+
+.navbar {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  min-height: var(--header-height);
+}
+
+.logo-img {
+  height: 32px;
+  display: block;
+}
+
+.navbar .nav-link,
+.navbar .dropdown-toggle {
+  font-size: 15px;
+  font-weight: 500;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.navbar-nav .nav-item {
+  margin-right: 8px;   
+}
+
+.header-glass {
+  position: fixed;              
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;                
+
+  background: rgba(255, 255, 255, 0.2);  
+  backdrop-filter: blur(8px);           
+  -webkit-backdrop-filter: blur(8px);   
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05); 
+}
+
+:root {
+  --header-height: 48px;
+}
+
+.app-main {
+  padding-top: calc(var(--header-height) + 16px);
+}
+
+.content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Header 基础 */
+.app-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-inner {
+  max-width: 1200px;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+/* 右侧 */
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 菜单按钮 */
+.menu-toggle {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Overlay */
+.nav-overlay {
+  position: fixed;
+  top: var(--header-height);   /* 从 header 底部开始 */
+  left: 0;
+  right: 0;
+
+  height: auto;
+  max-height: calc(100vh - var(--header-height));
+
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+
+  display: none;
+  z-index: 900; /* 比 header 低一点也可以 */
+}
+
+
+.nav-overlay.active {
+  display: block;
+}
+
+.overlay-menu {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/* ===== Header Tabs 默认显示 ===== */
+.header-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+/* 菜单按钮默认隐藏 */
+.menu-toggle {
+  display: none;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ===== 窗口变窄时 ===== */
+@media (max-width: 1100px) {
+
+  /* 隐藏 header 中的 tab */
+  .header-tabs {
+    display: none;
+  }
+
+  /* 显示菜单按钮 */
+  .menu-toggle {
+    display: block;
+  }
+}
+
+.navbar .dropdown-menu {
+  z-index: 1100;
+  position: absolute;
+  top: calc(100% + 2px);
+  transform-origin: top right;
+ 
+  min-width: 180px;
+  padding: 8px 0;
+
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12);
+
+  /* 动画准备状态 */
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+
+  pointer-events: none;
+}
+
+/* dropdown 打开状态（Bootstrap 自动加 .show） */
+.navbar .dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.navbar .dropdown-item {
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  transition: background 0.15s ease;
+}
+
+.navbar .dropdown-item:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.page-container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 32px;
+}

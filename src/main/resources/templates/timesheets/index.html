@@ -1,0 +1,46 @@
+<!-- templates/timesheets/index.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:insert="~{layouts/main :: layout(
+        title='Timesheets',
+        content=~{::section}
+    )}">
+
+    <section>
+        <h2>Timesheets</h2>
+
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>ユーザーID</th>
+                <th>期間</th>
+                <th>状態</th>
+                <th>勤務時間</th>
+                <th>残業時間</th>
+                <th>深夜時間</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="t : ${timesheets}">
+                <td th:text="${t.id}"></td>
+                <td th:text="${t.userId}"></td>
+                <td th:text="${t.periodYear} + '-' + ${t.periodMonth}"></td>
+                <td>
+                    <span th:text="${t.statusLabel}"
+                          th:class="'badge ' + ${t.badgeClass}"></span>
+                </td>
+                <td th:text="${t.workHours}"></td>
+                <td th:text="${t.overtimeHours}"></td>
+                <td th:text="${t.nightHours}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+</div>
+
+</body>
+</html>

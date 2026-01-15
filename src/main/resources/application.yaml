@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: kintai
+  redis:
+    host: localhost
+    port: 6379
+  datasource:
+    url: jdbc:mysql://localhost:3306/kintai?useSSL=false&serverTimezone=Asia/Tokyo
+    username: timesheet_user
+    password: asdfghjkl
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # 开发阶段用 update，首次上线可以改成 validate 或 none
+    show-sql: true       # 输出 SQL 到控制台
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+  flyway:
+    enabled: false
+    baseline-on-migrate: true
+    baseline-version: 1
+    locations: classpath:database/migration
+
